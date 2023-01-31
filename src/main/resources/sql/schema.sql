@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS worker_config
+(
+    id    VARCHAR(64) NOT NULL,
+    state VARCHAR(64) NOT NULL CHECK ( state IN ('RECOVERY', 'REPLICATING') ),
+    PRIMARY KEY (id)
+);

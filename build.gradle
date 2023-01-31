@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.8'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.apache.camel', name: 'camel-spring-boot-starter', version: '2.25.4'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework:spring-jdbc'
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-ec2', version: '1.12.395'
+    implementation('org.postgresql:postgresql:42.5.1')
+
+    implementation group: 'org.apache.camel', name: 'camel-aws', version: '2.25.4'
+    implementation group: 'org.apache.camel', name: 'camel-aws-sqs', version: '3.8.0'
+//    implementation group: 'javax.activation', name: 'activation', version: '1.1'
+//    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
